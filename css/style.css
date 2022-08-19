@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body {
     background-color:
         #131bab;
@@ -61,13 +64,17 @@ body {
 .grid-wrapper {
     display: flex;
     justify-content: center;
+
 }
 
 .grid-container {
     background-color: aliceblue;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+
+    
     grid-template-areas:
         "block1 block7 block13 block19 block25 block31"
         "block2 block8 block14 block20 block26 block32"
@@ -80,9 +87,56 @@ body {
 
 }
 
+    
+
+
+@media (max-width: 800px){
+    .grid-container{
+        grid-template-areas:
+        "block1 block13 block25"  
+        "block2 block14 block26"
+        "block3 block15 block27"
+        "block4 block16 block28"
+        "block5 block17 block29"
+        "block6 block18 block30"
+        "block7 block19 block31"
+        "block8 block20 block32"
+        "block9 block21 block33"
+        "block10 block22 block34"
+        "block11 block23 block35"
+        "block12 block24 block36"
+    }
+}
+
+@media (max-width: 600px){
+    .grid-container{
+        grid-template-areas:
+        "block1 block19"  
+        "block2 block20"
+        "block3 block21"
+        "block4 block22"
+        "block5 block23"
+        "block6 block24"
+        "block7 block25"
+        "block8 block26"
+        "block9 block27"
+        "block10 block28"
+        "block11 block29"
+        "block12 block30"
+        "block13 block31"
+        "block14 block32"
+        "block15 block33"
+        "block16 block34"
+        "block17 block35"
+        "block18 block36"
+    }
+}
+
 .grid-block {
     border: 1px solid black;
     text-align: center;
+    width: 100%;
+ 
 }
 
 #block1 {
@@ -337,9 +391,13 @@ footer {
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
     
+    
 }
 
 .grid-button-category {
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+    text-align: center;
+    max-width: 100%;
+    
 }
