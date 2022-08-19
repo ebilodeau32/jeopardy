@@ -1,0 +1,345 @@
+body {
+    background-color:
+        #131bab;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------- HEADER ------- */
+
+.header {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4em;
+    background: -webkit-linear-gradient(#bf95bf, #fcf6ba, #b38728, #fbf5B7, #aa771c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+/* ------- MAIN ------- */
+
+.title-img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#title-img {
+    width: 600px;
+    object-fit: contain;
+}
+
+
+.wrapper2 {
+    display: flex;
+    justify-content: center;
+
+}
+
+#button-play {
+    height: 5em;
+    width: 10em;
+    margin: 5em;
+    background-color: #f9a827;
+}
+
+.turn {
+    text-align: center;
+}
+
+/* ------- GRID ------- */
+
+.grid-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "block1 block7 block13 block19 block25 block31"
+        "block2 block8 block14 block20 block26 block32"
+        "block3 block9 block15 block21 block27 block33"
+        "block4 block10 block16 block22 block28 block34"
+        "block5 block11 block17 block23 block29 block35"
+        "block6 block12 block18 block24 block30 block36";
+    gap: 1px black;
+    padding: 3em;
+
+}
+
+.grid-block {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#block1 {
+    grid-area: block1;
+    
+}
+
+#block2 {
+    grid-area: block2;
+}
+
+#block3 {
+    grid-area: block3;
+}
+
+#block4 {
+    grid-area: block4;
+}
+
+#block5 {
+    grid-area: block5;
+}
+
+#block6 {
+    grid-area: block6;
+}
+
+#block7 {
+    grid-area: block7;
+}
+
+#block8 {
+    grid-area: block8;
+}
+
+#block9 {
+    grid-area: block9;
+}
+
+#block10 {
+    grid-area: block10;
+}
+
+#block11 {
+    grid-area: block11;
+}
+
+#block12 {
+    grid-area: block12;
+}
+
+#block13 {
+    grid-area: block13
+}
+
+#block14 {
+    grid-area: block14
+}
+
+#block15 {
+    grid-area: block15
+}
+
+#block16 {
+    grid-area: block16
+}
+
+#block17 {
+    grid-area: block17
+}
+
+#block18 {
+    grid-area: block18
+}
+
+#block19 {
+    grid-area: block19
+}
+
+#block20 {
+    grid-area: block20
+}
+
+#block21 {
+    grid-area: block21
+}
+
+#block22 {
+    grid-area: block22
+}
+
+#block23 {
+    grid-area: block23
+}
+
+#block24 {
+    grid-area: block24
+}
+
+#block25 {
+    grid-area: block25
+}
+
+#block26 {
+    grid-area: block26
+}
+
+#block27 {
+    grid-area: block27
+}
+
+#block28 {
+    grid-area: block28
+}
+
+#block29 {
+    grid-area: block29
+}
+
+#block30 {
+    grid-area: block30
+}
+
+#block31 {
+    grid-area: block31
+}
+
+#block32 {
+    grid-area: block32
+}
+
+#block33 {
+    grid-area: block33
+}
+
+#block34 {
+    grid-area: block34
+}
+
+#block35 {
+    grid-area: block35
+}
+
+#block36 {
+    grid-area: block36
+}
+
+/* ------- USER INPUT ------- */
+
+form {
+    background-color: gray;
+    text-align: center;
+}
+
+.user-input {
+    display: flex;
+    justify-content: center;
+    background-color: #5adaff;
+    padding: 2em;
+}
+
+.input-button-container {
+    display: flex;
+    flex-direction: row;
+ justify-content: end;
+    margin: 1em;
+} 
+
+.input-button-container input[type=button] {
+   margin: 1em 1em;
+}
+
+input[type=text] {
+margin-top: 2em;
+    padding: 5px;
+  
+}
+
+input[type=button] {
+   background-color: #bf95bf;
+    
+}
+
+
+/* ------- FOOTER ------- */
+
+footer {
+    text-align: center;
+    background-color: blueviolet;
+    height: 10vh;
+    margin: 0;
+
+}
+
+/* ------- TESTING OF BUTTON------- */
+
+/* CSS */
+.button-play {
+    margin: 2em;
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 5em;
+    width: 10em;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.button-play:focus {
+    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-play:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.button-play:active {
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.grid-button{
+    background-color: #020978 ;
+    color: 
+    #d7a14a;
+    width: 20vh;
+    height: 12vh;
+    font-size: 45px;
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 2.5px 2.5px black;
+    
+}
+
+.grid-button-category {
+    color: white;
+    font-size: 30px;
+}
