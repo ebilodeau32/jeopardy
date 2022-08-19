@@ -1,6 +1,7 @@
-*{
+* {
     box-sizing: border-box;
 }
+
 body {
     background-color:
         #131bab;
@@ -12,24 +13,33 @@ body {
     flex-direction: column;
 }
 
-/* ------- HEADER ------- */
+
+/*! ---------- HEADER ------- */
 
 .header {
     text-align: center;
-    margin-bottom: 2em;
+    margin: 0 10em;
 }
 
 .header h1 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 4em;
-    background: -webkit-linear-gradient(#bf95bf, #fcf6ba, #b38728, #fbf5B7, #aa771c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
+    background-color: #c0392b;
+    border: 3px solid white;
+    border-style: groove;
+
+}
+
+.subheader {
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 1.5px 1.5px black;
 }
 
 
-
-/* ------- MAIN ------- */
+/*! ------- MAIN ------- */
 
 .title-img-wrapper {
     display: flex;
@@ -59,7 +69,7 @@ body {
     text-align: center;
 }
 
-/* ------- GRID ------- */
+/*! ------- GRID ------- */
 
 .grid-wrapper {
     display: flex;
@@ -68,13 +78,8 @@ body {
 }
 
 .grid-container {
-    background-color: aliceblue;
+    border: 3px solid black;
     display: grid;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-
-    
     grid-template-areas:
         "block1 block7 block13 block19 block25 block31"
         "block2 block8 block14 block20 block26 block32"
@@ -83,52 +88,51 @@ body {
         "block5 block11 block17 block23 block29 block35"
         "block6 block12 block18 block24 block30 block36";
     gap: 1px black;
-    padding: 3em;
 
 }
 
-    
 
+/** ------- RESPONSIVE GRID ------- */
 
-@media (max-width: 800px){
-    .grid-container{
+@media (max-width: 800px) {
+    .grid-container {
         grid-template-areas:
-        "block1 block13 block25"  
-        "block2 block14 block26"
-        "block3 block15 block27"
-        "block4 block16 block28"
-        "block5 block17 block29"
-        "block6 block18 block30"
-        "block7 block19 block31"
-        "block8 block20 block32"
-        "block9 block21 block33"
-        "block10 block22 block34"
-        "block11 block23 block35"
-        "block12 block24 block36"
+            "block1 block13 block25"
+            "block2 block14 block26"
+            "block3 block15 block27"
+            "block4 block16 block28"
+            "block5 block17 block29"
+            "block6 block18 block30"
+            "block7 block19 block31"
+            "block8 block20 block32"
+            "block9 block21 block33"
+            "block10 block22 block34"
+            "block11 block23 block35"
+            "block12 block24 block36"
     }
 }
 
-@media (max-width: 600px){
-    .grid-container{
+@media (max-width: 600px) {
+    .grid-container {
         grid-template-areas:
-        "block1 block19"  
-        "block2 block20"
-        "block3 block21"
-        "block4 block22"
-        "block5 block23"
-        "block6 block24"
-        "block7 block25"
-        "block8 block26"
-        "block9 block27"
-        "block10 block28"
-        "block11 block29"
-        "block12 block30"
-        "block13 block31"
-        "block14 block32"
-        "block15 block33"
-        "block16 block34"
-        "block17 block35"
-        "block18 block36"
+            "block1 block19"
+            "block2 block20"
+            "block3 block21"
+            "block4 block22"
+            "block5 block23"
+            "block6 block24"
+            "block7 block25"
+            "block8 block26"
+            "block9 block27"
+            "block10 block28"
+            "block11 block29"
+            "block12 block30"
+            "block13 block31"
+            "block14 block32"
+            "block15 block33"
+            "block16 block34"
+            "block17 block35"
+            "block18 block36"
     }
 }
 
@@ -136,12 +140,12 @@ body {
     border: 1px solid black;
     text-align: center;
     width: 100%;
- 
+
 }
 
 #block1 {
     grid-area: block1;
-    
+
 }
 
 #block2 {
@@ -284,52 +288,153 @@ body {
     grid-area: block36
 }
 
-/* ------- USER INPUT ------- */
+/*! ------- USER INPUT ------- */
 
-form {
-    background-color: gray;
+.form1 {
+    background-color: #ecf0f1;
     text-align: center;
+    border-radius: 1em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
 
 .user-input {
     display: flex;
     justify-content: center;
-    background-color: #5adaff;
+    background-color: #131bab;
     padding: 2em;
 }
 
 .input-button-container {
     display: flex;
     flex-direction: row;
- justify-content: end;
+    justify-content: end;
     margin: 1em;
-} 
+}
 
 .input-button-container input[type=button] {
-   margin: 1em 1em;
+    margin: 1em 1em;
 }
 
 input[type=text] {
-margin-top: 2em;
+    margin-top: 2em;
     padding: 5px;
-  
 }
 
-input[type=button] {
-   background-color: #bf95bf;
-    
+.text-input:focus {
+    border-color:  rgba(226, 13, 13, 0.64);
+    outline: 0;
 }
 
+/**INPUT BUTTONS */
+.input-btn {
+    align-items: center;
+    appearance: none;
+    background-color: #c0392b;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
 
-/* ------- FOOTER ------- */
+.input-btn:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
 
-footer {
+.input-btn:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.input-btn:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+/** FINAL JEOPARDY FORM------*/
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 25%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    background-color: #c0392b;
+}
+
+.final-form {
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+   background-color: aliceblue;
+
+  }
+
+  .form-item {
+   
+    margin: 10px;
     text-align: center;
-    background-color: blueviolet;
-    height: 10vh;
-    margin: 0;
+  } 
 
+
+
+
+
+/*! ------- SCORE ------- */
+
+.player-score {
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 1.5px 1.5px gray;
+    font-size: 1em;
+    color: white;
+    background-color: #f9a827;
 }
+
+/*! ------- FOOTER ------- */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #131bab;
+    padding-top: 1px;
+    font-family: 'Roboto', sans-serif;
+    color: gray;
+    font-size: 1em;
+}
+
+
+
+
 
 /* ------- TESTING OF BUTTON------- */
 
@@ -381,17 +486,17 @@ footer {
     transform: translateY(2px);
 }
 
-.grid-button{
-    background-color: #020978 ;
-    color: 
-    #d7a14a;
+.grid-button {
+    background-color: #020978;
+    color:
+        #d7a14a;
     width: 20vh;
     height: 12vh;
     font-size: 45px;
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
-    
-    
+
+
 }
 
 .grid-button-category {
@@ -399,5 +504,5 @@ footer {
     font-size: 25px;
     text-align: center;
     max-width: 100%;
-    
+
 }
