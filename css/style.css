@@ -19,16 +19,19 @@ body {
 .header {
     text-align: center;
     margin: 0 10em;
+    display: flex;
+    justify-content: center;
+
 }
 
 .header h1 {
     font-family: 'Lato', sans-serif;
-    font-size: 4em;
+    font-size: 3em;
     color: white;
     background-color: #c0392b;
     border: 3px solid white;
     border-style: groove;
-
+    padding: 10px 20px;
 }
 
 .subheader {
@@ -38,11 +41,15 @@ body {
     text-shadow: 1.5px 1.5px black;
 }
 
-.swing-in-top-fwd {
-	-webkit-animation: swing-in-top-fwd 1.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-fwd 1.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+.swirl-in-fwd {
+    -webkit-animation: swirl-in-fwd 1.6s ease-out both;
+    animation: swirl-in-fwd 1.6s ease-out both;
 }
 
+.swing-in-top-fwd {
+    -webkit-animation: swing-in-top-fwd 1.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+    animation: swing-in-top-fwd 1.8s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
 
 /*! ------- MAIN ------- */
 
@@ -139,6 +146,7 @@ body {
             "block17 block35"
             "block18 block36"
     }
+
 }
 
 .grid-block {
@@ -327,14 +335,14 @@ input[type=text] {
 }
 
 .text-input:focus {
-    border-color:  rgba(226, 13, 13, 0.64);
+    border-color: rgba(226, 13, 13, 0.64);
     outline: 0;
 }
 
 /**BUTTONS */
 
-#play-btn{
- margin: 2em;
+#play-btn {
+    margin: 2em;
 }
 
 .input-btn {
@@ -404,20 +412,20 @@ input[type=text] {
 
 }
 
-.btn-round{
- margin: 0 0 1em 0;
+.btn-round {
+    margin: 0 0 1em 0;
     background-color: #f9a827;
 
 }
 
-.button-wrapper{
+.button-wrapper {
     display: flex;
     justify-content: center;
 }
 
 /** FINAL JEOPARDY FORM------*/
 
-.form2{
+.form2 {
     background-color: #ecf0f1;
     padding: 5px;
     border: 1px solid black;
@@ -425,19 +433,20 @@ input[type=text] {
     border-radius: 1em;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
-  
+
 }
+
 .form-wrapper {
     display: flex;
     flex-direction: column;
     margin: 0 25%;
-    
+
 }
 
 .col {
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
+
 }
 
 .final-form {
@@ -447,41 +456,46 @@ input[type=text] {
     justify-content: center;
     align-items: center;
     align-content: center;
-   background-color: aliceblue;
+}
 
-  }
-
-  .form-item {
+.form-item {
     margin: 10px;
     text-align: center;
-  } 
+}
 
-  .final-question {
+.final-question {
     text-align: center;
     background-color: #020978;
     padding: 3em;
-  }
+    border-radius: 1em 1em 0 0;
+}
 
-  .bet-btn-wrapper{
+.bet-btn-wrapper {
     display: flex;
     justify-content: center;
     margin-top: 1em;
-  }
+}
 
-  .final-cat-text{
+.final-cat-text {
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
     color:
-    #d7a14a;
+        #d7a14a;
     font-size: 4vh;
-  }
+}
 
-  .final-q-text{
+.final-q-text {
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
-    color:white;
+    color: white;
     font-size: 2.5vh;
-  }
+}
+
+@media (max-width: 800px) {
+    .final-form {
+        flex-direction: column;
+    }
+}
 
 /*! ------- SCORE ------- */
 
@@ -493,6 +507,14 @@ input[type=text] {
     font-size: 1em;
     color: white;
     background-color: #f9a827;
+}
+
+/*! ------- AUDIO ------- */
+
+.audio-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2em;
 }
 
 /*! ------- FOOTER ------- */
@@ -522,41 +544,45 @@ input[type=text] {
  * animation swirl-in-fwd
  * ----------------------------------------
  */
- @-webkit-keyframes swirl-in-fwd {
+@-webkit-keyframes swirl-in-fwd {
     0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
+
     100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
-  }
-  @keyframes swirl-in-fwd {
+}
+
+@keyframes swirl-in-fwd {
     0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
+
     100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
-  }
-  
+}
+
 /**
  * ----------------------------------------
  * animation swing-in-top-fwd
  * ----------------------------------------
  */
- @-webkit-keyframes swing-in-top-fwd {
+@-webkit-keyframes swing-in-top-fwd {
     0% {
-      -webkit-transform: rotateX(-100deg);
-              transform: rotateX(-100deg);
-      -webkit-transform-origin: top;
-              transform-origin: top;
-      opacity: 0;
+        -webkit-transform: rotateX(-100deg);
+        transform: rotateX(-100deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 0;
     }
+}
