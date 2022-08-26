@@ -306,4 +306,4 @@
         }
     ]
 
-    module.exports = placeholderQuestions
+   export default placeholderQuestions;
