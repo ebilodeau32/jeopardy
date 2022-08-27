@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeopardy</title>
   <link rel="stylesheet" href="css/style.css">
-   <!-- GOOGLE FONTS -->
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Denk+One&family=Lato:wght@900&family=Orbitron:wght@900&family=Oswald:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Denk+One&family=Lato:wght@900&family=Orbitron:wght@900&family=Oswald:wght@700&family=Roboto&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
-<div class="header">
+  <div class="header">
     <h1 class="swing-in-top-fwd">Round One</h1>
-</div>
+  </div>
 
   <div class="wrapper">
 
 
-<div class="turn">
-  <h3 class="subheader">PLAYER TURN</h3>
-</div>
+    <div class="turn">
+      <h3 class="subheader">PLAYER TURN: <span id="player-turn"></span></h3>
+    </div>
 
-<!---------------- GRID ------------>
+    <!---------------- GRID ------------>
+    <div class="grid-wrapper">
 
-<div class="grid-wrapper">
+      <div class="grid-container">
+        <div class="grid-block" id="block1"><button class="grid-button grid-button-category nature">CATEGORY</button></div>
+        <div class="grid-block" id="block2"><button class="grid-button grid-question nature">100</button></div>
+        <div class="grid-block" id="block3"><button class="grid-button grid-question nature">200</button></div>
+        <div class="grid-block" id="block4"><button class="grid-button grid-question nature">300</button></div>
+        <div class="grid-block" id="block5"><button class="grid-button grid-question nature">400</button></div>
+        <div class="grid-block" id="block6"><button class="grid-button grid-question nature">500</button></div>
+        <div class="grid-block" id="block7"><button class="grid-button grid-button-category animals">CATEGORY</button></div>
+        <div class="grid-block" id="block8"><button class="grid-button grid-question animals">100</button></div>
+        <div class="grid-block" id="block9"><button class="grid-button grid-question animals">200</button></div>
+        <div class="grid-block" id="block10"><button class="grid-button grid-question animals">300</button></div>
+        <div class="grid-block" id="block11"><button class="grid-button grid-question animals">400</button></div>
+        <div class="grid-block" id="block12"><button class="grid-button grid-question animals">500</button></div>
 
-  <div class="grid-container">
-    <div class="grid-block" id="block1"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block2"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block3"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block4"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block5"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block6"><button class="grid-button">500</button></div>
-    <div class="grid-block" id="block7"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block8"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block9"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block10"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block11"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block12"><button class="grid-button">500</button></div>
-  
-    <div class="grid-block" id="block13"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block14"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block15"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block16"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block17"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block18"><button class="grid-button">500</button></div>
-    <div class="grid-block" id="block19"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block20"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block21"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block22"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block23"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block24"><button class="grid-button">500</button></div>
-  
-    <div class="grid-block" id="block25"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block26"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block27"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block28"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block29"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block30"><button class="grid-button">500</button></div>
-    <div class="grid-block" id="block31"><button class="grid-button grid-button-category">CATEGORY</button></div>
-    <div class="grid-block" id="block32"><button class="grid-button">100</button></div>
-    <div class="grid-block" id="block33"><button class="grid-button">200</button></div>
-    <div class="grid-block" id="block34"><button class="grid-button">300</button></div>
-    <div class="grid-block" id="block35"><button class="grid-button">400</button></div>
-    <div class="grid-block" id="block36"><button class="grid-button">500</button></div>
-  
-  </div>
-</div>
+        <div class="grid-block" id="block13"><button class="grid-button grid-button-category computers">CATEGORY</button></div>
+        <div class="grid-block" id="block14"><button class="grid-button grid-question computers">100</button></div>
+        <div class="grid-block" id="block15"><button class="grid-button grid-question computers">200</button></div>
+        <div class="grid-block" id="block16"><button class="grid-button grid-question computers">300</button></div>
+        <div class="grid-block" id="block17"><button class="grid-button grid-question computers">400</button></div>
+        <div class="grid-block" id="block18"><button class="grid-button grid-question computers">500</button></div>
+        <div class="grid-block" id="block19"><button class="grid-button grid-button-category mythology">CATEGORY</button></div>
+        <div class="grid-block" id="block20"><button class="grid-button grid-question mythology">100</button></div>
+        <div class="grid-block" id="block21"><button class="grid-button grid-question mythology">200</button></div>
+        <div class="grid-block" id="block22"><button class="grid-button grid-question mythology">300</button></div>
+        <div class="grid-block" id="block23"><button class="grid-button grid-question mythology">400</button></div>
+        <div class="grid-block" id="block24"><button class="grid-button grid-question mythology">500</button></div>
 
-<div class="user-input">
-  <form class="form1">
-    <label for="user-input"></label>
-    <input type="text" placeholder="Guess here" name="guess" class="text-input"><br><br>
-<div class="input-button-container">
-  <input type="button" class="input-btn" value="GUESS">
-  <input type="button" class="input-btn" value="PASS">
-  
-</div>
-  </form>
-</div>
+        <div class="grid-block" id="block25"><button class="grid-button grid-button-category history">CATEGORY</button></div>
+        <div class="grid-block" id="block26"><button class="grid-button grid-question history">100</button></div>
+        <div class="grid-block" id="block27"><button class="grid-button grid-question history">200</button></div>
+        <div class="grid-block" id="block28"><button class="grid-button grid-question history">300</button></div>
+        <div class="grid-block" id="block29"><button class="grid-button grid-question history">400</button></div>
+        <div class="grid-block" id="block30"><button class="grid-button grid-question history">500</button></div>
+        <div class="grid-block" id="block31"><button class="grid-button grid-button-category general">CATEGORY</button></div>
+        <div class="grid-block" id="block32"><button class="grid-button grid-question general">100</button></div>
+        <div class="grid-block" id="block33"><button class="grid-button grid-question general">200</button></div>
+        <div class="grid-block" id="block34"><button class="grid-button grid-question general">300</button></div>
+        <div class="grid-block" id="block35"><button class="grid-button grid-question general">400</button></div>
+        <div class="grid-block" id="block36"><button class="grid-button grid-question general">500</button></div>
 
-<div class="button-wrapper">
+      </div>
+    </div>
 
-  <button onclick="window.location.href ='round-2.html';" class="input-btn btn-round" role="button">NEXT ROUND</button>
+   
 
-</div>
+    <div class="button-wrapper">
+      <button onclick="window.location.href ='round-2.html';" id="next-round-btn"class="input-btn btn-round" role="button">NEXT
+        ROUND</button>
+    </div>
 
-
-<div class="player-score">
-  <h4>Player 1 Score: <span>0</Score:span></h4>
-  <h4>Player 2 Score: <span>0</span></h4>
-</div>
+    <div class="player-score">
+      <h4>Player 1 Score: <span>0</Score:span>
+      </h4>
+      <h4>Player 2 Score: <span>0</span></h4>
+    </div>
 
   </div>
 
- <div class="footer">
-  <p><em>BCA SDB-August-2022</em></p>
- </div>
- 
   
-      
+<div class="popup" id="popup-1">
+<div class="overlay" id="overlay">
+  <div class="content">
+    <h1 id="card-category-name">Category Name</h1>
+    <p id="card-question-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, fugit facere eligendi laudantium culpa a amet repudiandae asperiores mollitia ratione illum eum perspiciatis, optio architecto quis odio sed libero rerum.</p>
 
-   
-   
+    <div class="user-input">
+      <form class="form1">
+        <label for="user-input"></label>
+        <input type="text" placeholder="Guess here" name="guess" class="text-input"><br><br>
+        <div class="input-button-container">
+          <input type="button" id="guess-btn" class="input-btn" value="GUESS">
+          <input type="button" id="pass-btn" class="input-btn" value="PASS">
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+</div>
 
 
+  <div class="footer">
+    <p><em>BCA SDB-August-2022</em></p>
+  </div>
 
-
+  <script type="module" src="./scripts/index.js"></script>
 </body>
+
 </html>

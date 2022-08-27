@@ -13,7 +13,6 @@ body {
     flex-direction: column;
 }
 
-
 /*! ---------- HEADER ------- */
 
 .header {
@@ -21,7 +20,6 @@ body {
     margin: 0 10em;
     display: flex;
     justify-content: center;
-
 }
 
 .header h1 {
@@ -39,6 +37,12 @@ body {
     font-size: 1.5em;
     font-family: 'Roboto', sans-serif;
     text-shadow: 1.5px 1.5px black;
+}
+
+.subheader span {
+    background-color: #f9a827;
+    color: white;
+    padding: 0.2em;
 }
 
 .swirl-in-fwd {
@@ -67,7 +71,6 @@ body {
 .wrapper2 {
     display: flex;
     justify-content: center;
-
 }
 
 #button-play {
@@ -86,7 +89,6 @@ body {
 .grid-wrapper {
     display: flex;
     justify-content: center;
-
 }
 
 .grid-container {
@@ -102,7 +104,6 @@ body {
     gap: 1px black;
 
 }
-
 
 /** ------- RESPONSIVE GRID ------- */
 
@@ -146,19 +147,16 @@ body {
             "block17 block35"
             "block18 block36"
     }
-
 }
 
 .grid-block {
     border: 1px solid black;
     text-align: center;
     width: 100%;
-
 }
 
 #block1 {
     grid-area: block1;
-
 }
 
 #block2 {
@@ -314,8 +312,8 @@ body {
 .user-input {
     display: flex;
     justify-content: center;
-    background-color: #131bab;
-    padding: 2em;
+    /* background-color: #131bab; */
+    padding: 1em;
 }
 
 .input-button-container {
@@ -390,6 +388,10 @@ input[type=text] {
     transform: translateY(2px);
 }
 
+.input-btn:disabled {
+    background-color: gray;
+    pointer-events: none;
+}
 
 .grid-button {
     background-color: #020978;
@@ -400,8 +402,10 @@ input[type=text] {
     font-size: 45px;
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
+}
 
-
+.grid-button:disabled{
+    pointer-events: none;
 }
 
 .grid-button-category {
@@ -415,7 +419,6 @@ input[type=text] {
 .btn-round {
     margin: 0 0 1em 0;
     background-color: #f9a827;
-
 }
 
 .button-wrapper {
@@ -432,21 +435,17 @@ input[type=text] {
     text-align: center;
     border-radius: 1em;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
-
 }
 
 .form-wrapper {
     display: flex;
     flex-direction: column;
     margin: 0 25%;
-
 }
 
 .col {
     display: flex;
     flex-direction: column;
-
 }
 
 .final-form {
@@ -479,8 +478,7 @@ input[type=text] {
 .final-cat-text {
     font-family: 'Oswald', sans-serif;
     text-shadow: 2.5px 2.5px black;
-    color:
-        #d7a14a;
+    color:#d7a14a;
     font-size: 4vh;
 }
 
@@ -507,6 +505,63 @@ input[type=text] {
     font-size: 1em;
     color: white;
     background-color: #f9a827;
+}
+
+/*! ------ QUESTION POP UP ------- */
+
+  .popup .overlay {
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+    /*!Will need to adjust display using JS */
+  }
+
+  .popup .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: black;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #fff;
+    width: 90vh;
+    height: 70vh;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color:#020978;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content {
+    transition: all 300s ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#card-category-name{
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 4px 4px black;
+    color:#d7a14a;
+    font-size: 6vh;
+}
+
+#card-question-text {
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 4px 4px black;
+    color: white;
+    font-size: 4vh;
 }
 
 /*! ------- AUDIO ------- */
