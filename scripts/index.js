@@ -45,9 +45,6 @@ let secondRoundArrayHistory = historyQuestions.slice(5, 10);
 let firstRoundArrayGeneral = generalQuestions.slice(0, 5);
 let secondRoundArrayGeneral = generalQuestions.slice(5, 10);
 
-console.log(firstRoundArrayGeneral);
-
-
 //?find a way to loop over objects, pick out a specific value, and push into the array below
 let categoryArray = [
   "Nature",
@@ -71,11 +68,17 @@ let gridCategoryBtn = document.querySelectorAll(".grid-button-category");
 let cardCategoryName = document.getElementById("card-category-name");
 let cardQuestionText = document.getElementById("card-question-text");
 
+// console.log(gridBlock);
 // console.log(cardCategoryName.innerText);
 // console.log(cardQuestionText.innerText);
 
+//turn HTML collection into an array
 const gridBlockArray = Array.from(gridBlock);
 let roundCheck = 1;
+let blockClassList;
+let pointValue;
+let itemIndex;
+let category;
 
 //*-----------------------PAGE SETUP-------------------
 //Disable buttons on round start
@@ -91,25 +94,24 @@ assigningCategoryTitles();
 
 //*-------------------EVENT LISTENERS-----------------
 //Disable all category buttons so they can't be clicked
-// console.log(gridCategoryBtn);
 
 gridCategoryBtn.forEach((block) => {
   block.disabled = true;
 });
 
 //Add event listeners to every grid-block element
-
-console.log(gridBlockArray);
-
+// console.log(gridBlockArray);
 
 gridBlockArray.forEach((block) => {
   block.addEventListener("click", (event) => {
     console.log("trigger popup with question text.");
-    console.log(event.target); 
-    //!---THIS IS THE KEY TO MOVING FORWARD!!!
-    selectAQuestion();
-
-    //!use event.target?
+    console.log(event.target);
+    blockClassList = event.target.classList;
+    pointValue = event.target.innerText;
+    itemIndex = determineIndex(pointValue);
+    console.log(blockClassList);
+    console.log(pointValue);
+    selectAQuestion(blockClassList, block, itemIndex);
   });
 });
 
@@ -122,23 +124,13 @@ document.addEventListener("keydown", function (event) {
 
 //Pass question event listener
 passBtn.addEventListener("click", (event) => {
-  checkAnswer();
+  passQuestion();
 });
 
 //Guess event listener
 guessBtn.addEventListener("click", (event) => {
-let index = determineIndex()
-  // checkAnswer(questionArray, pointValue);
-  console.log("Guess button event listener");
+  checkAnswer(blockClassList, itemIndex);
 });
-
-//*----------------GAME FUNCTION---------------------
-
-function playJeopardy(){
-
-
-}
-
 
 //*-----------------------FUNCTIONS-------------------
 //assign category titles to each column from array
@@ -152,7 +144,7 @@ function assigningCategoryTitles() {
 }
 
 //When a player selects a card...
-function selectAQuestion(block) {
+function selectAQuestion(blockClassList, block, index) {
   //submit answer & pass buttons enabled
   passBtn.disabled = false;
   guessBtn.disabled = false;
@@ -161,89 +153,80 @@ function selectAQuestion(block) {
   document.getElementById("popup-1").classList.toggle("active");
 
   //based on button clicked (certain class) the correct type of text is filled onto the card
-
-if(roundCheck == 1) {
-  switch (true) {
-    case block.classList.contains("nature"):
-      questionPickerFunction(firstRoundArrayNature, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("animals"):
-      questionPickerFunction(firstRoundArrayAnimals, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("computers"):
-      questionPickerFunction(firstRoundArrayComputer, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("mythology"):
-      questionPickerFunction(firstRoundArrayMythology, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("history"):
-      questionPickerFunction(firstRoundArrayHistory, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("general"):
-      questionPickerFunction(firstRoundArrayGeneral, block.innerText);
-      block.disabled = true;
-      break;
-    default:
-      console.log("Another category");
+  //! ------ PULLS FROM ROUND 1 ARRAYS-------
+  if (roundCheck == 1) {
+    switch (true) {
+      case blockClassList.contains("nature"):
+        questionPickerFunction(firstRoundArrayNature, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("animals"):
+        console.log("I made it here!");
+        questionPickerFunction(firstRoundArrayAnimals, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("computers"):
+        questionPickerFunction(firstRoundArrayComputer, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("mythology"):
+        questionPickerFunction(firstRoundArrayMythology, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("history"):
+        questionPickerFunction(firstRoundArrayHistory, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("general"):
+        questionPickerFunction(firstRoundArrayGeneral, index);
+        block.disabled = true;
+        break;
+      default:
+        console.log("Another category");
+    }
+    //! ------ PULLS FROM ROUND 2 ARRAYS-------
   }
-
-} if(roundCheck == 2){
-  switch (true) {
-    case block.classList.contains("nature"):
-      questionPickerFunction(secondRoundArrayNature, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("animals"):
-      questionPickerFunction(secondRoundArrayAnimals, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("computers"):
-      questionPickerFunction(secondRoundArrayComputer, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("mythology"):
-      questionPickerFunction(secondRoundArrayMythology, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("history"):
-      questionPickerFunction(secondRoundArrayHistory, block.innerText);
-      block.disabled = true;
-      break;
-    case block.classList.contains("general"):
-      questionPickerFunction(secondRoundArrayGeneral, block.innerText);
-      block.disabled = true;
-      break;
-    default:
-      console.log("Another category");
+  if (roundCheck == 2) {
+    switch (true) {
+      case blockClassList.contains("nature"):
+        questionPickerFunction(secondRoundArrayNature, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("animals"):
+        questionPickerFunction(secondRoundArrayAnimals, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("computers"):
+        questionPickerFunction(secondRoundArrayComputer, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("mythology"):
+        questionPickerFunction(secondRoundArrayMythology, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("history"):
+        questionPickerFunction(secondRoundArrayHistory, index);
+        block.disabled = true;
+        break;
+      case blockClassList.contains("general"):
+        questionPickerFunction(secondRoundArrayGeneral, index);
+        block.disabled = true;
+        break;
+      default:
+        console.log("Another category");
+    }
   }
-
-
-}else {
-  console.log("Else - Select A Question")
-}
-
-
- 
 }
 
 //takes in the question array and assigns it to the card based on the point value/index
-function questionPickerFunction(questionArray, pointValue) {
- 
-  if (roundCheck === 1) {
-    let index = determineIndex(pointValue);
+function questionPickerFunction(questionArray, index) {
+  cardCategoryName.innerText = questionArray[index].category.toUpperCase();
+  cardQuestionText.innerText = questionArray[index].question.toUpperCase();
+}
 
-    console.log("This will use round 1 array");
-    cardCategoryName.innerText = questionArray[index].category.toUpperCase();
-    cardQuestionText.innerText = questionArray[index].question.toUpperCase();
-    
-  } else {
-    console.log("This will use round 2 array");
-  }
+//takes in the answer array and assigns it to the card based on the point value/index
+function answerPickerFunction(questionArray, index) {
+ alert(questionArray[index].answer);
 }
 
 //based on point values on the button, determines which question index to pull
@@ -270,7 +253,7 @@ function determineIndex(pointValue) {
   }
 }
 
-//! need to limit passing to once!
+//! need to limit passing to once! Put it in a for loop
 function passQuestion() {
   if (playerTurnSpan.innerText == "Player 1") {
     playerTurnSpan.innerText = "Player 2";
@@ -282,9 +265,56 @@ function passQuestion() {
 }
 
 //Guess function that checks if an answer is correct. if correct...if incorrect....
-function checkAnswer(array, pointValue) {
-  console.log(array);
-  console.log("CheckAnswer function runs");
-  console.log(index);
-  alert(`The correct answer is: ${array[index].answer}`);
+function checkAnswer(blockClassList, index) {
+ //! ------ PULLS FROM ROUND 1 ARRAYS-------
+ if (roundCheck == 1) {
+  switch (true) {
+    case blockClassList.contains("nature"):
+      answerPickerFunction(firstRoundArrayNature, index);
+      break;
+    case blockClassList.contains("animals"):
+      console.log("I made it here!");
+      answerPickerFunction(firstRoundArrayAnimals, index);
+      break;
+    case blockClassList.contains("computers"):
+      answerPickerFunction(firstRoundArrayComputer, index);
+      break;
+    case blockClassList.contains("mythology"):
+      answerPickerFunction(firstRoundArrayMythology, index);
+      break;
+    case blockClassList.contains("history"):
+      answerPickerFunction(firstRoundArrayHistory, index);
+      break;
+    case blockClassList.contains("general"):
+      answerPickerFunction(firstRoundArrayGeneral, index);
+      break;
+    default:
+      console.log("Another category");
+  }
+  //! ------ PULLS FROM ROUND 2 ARRAYS-------
+}
+if (roundCheck == 2) {
+  switch (true) {
+    case blockClassList.contains("nature"):
+      answerPickerFunction(secondRoundArrayNature, index);
+      break;
+    case blockClassList.contains("animals"):
+      answerPickerFunction(secondRoundArrayAnimals, index);
+      break;
+    case blockClassList.contains("computers"):
+      answerPickerFunction(secondRoundArrayComputer, index);
+      break;
+    case blockClassList.contains("mythology"):
+      answerPickerFunction(secondRoundArrayMythology, index);
+      break;
+    case blockClassList.contains("history"):
+      answerPickerFunction(secondRoundArrayHistory, index);
+      break;
+    case blockClassList.contains("general"):
+      answerPickerFunction(secondRoundArrayGeneral, index);
+      break;
+    default:
+      console.log("Another category");
+  }
+}
 }
