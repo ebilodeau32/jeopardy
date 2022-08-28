@@ -79,6 +79,7 @@ let blockClassList;
 let pointValue;
 let itemIndex;
 let category;
+let stopPass = false;
 
 //*-----------------------PAGE SETUP-------------------
 //Disable buttons on round start
@@ -124,7 +125,15 @@ document.addEventListener("keydown", function (event) {
 
 //Pass question event listener
 passBtn.addEventListener("click", (event) => {
-  passQuestion();
+
+  if(stopPass == false) {
+    stopPass = passQuestion();
+  } else {
+    stopPass = false;
+    alert("You can't pass this question again. Please enter your answer.");
+  }
+
+  
 });
 
 //Guess event listener
@@ -133,6 +142,7 @@ guessBtn.addEventListener("click", (event) => {
 });
 
 //*-----------------------FUNCTIONS-------------------
+
 //assign category titles to each column from array
 function assigningCategoryTitles() {
   let count = 0;
@@ -254,14 +264,23 @@ function determineIndex(pointValue) {
 }
 
 //! need to limit passing to once! Put it in a for loop
-function passQuestion() {
-  if (playerTurnSpan.innerText == "Player 1") {
-    playerTurnSpan.innerText = "Player 2";
-    alert("You passed the question. Turn: Player 2");
-  } else {
-    playerTurnSpan = "Player 1";
-    alert("You passed the question. Turn: Player 1");
-  }
+function passQuestion(event) {
+
+    if (playerTurnSpan.innerText == "Player 1") {
+      playerTurnSpan.innerText = "Player 2";
+      alert("You passed the question. Turn: Player 2");
+      
+      return true;
+    } else {
+
+      playerTurnSpan.innerText = "Player 1";
+      alert("You passed the question. Turn: Player 1");
+
+      return true;
+    }
+  
+
+
 }
 
 //Guess function that checks if an answer is correct. if correct...if incorrect....
