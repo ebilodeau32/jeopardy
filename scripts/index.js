@@ -22,32 +22,43 @@ let player1Score = document.getElementById("player1-score");
 let player2Score = document.getElementById("player2-score");
 let roundHeaderText = document.getElementById("round-header-text");
 
-let playerOne = {
-  name: "Player 1",
-  score: 14000,
-  turnToPick: true,
-  turnToGuess: true,
-  hasGuessed: false,
-  playerScoreLabel: player1Score,
-};
+let playerOne;
+let playerTwo;
+let roundCheck;
 
-let playerTwo = {
-  name: "Player 2",
-  score: 0,
-  turnToPick: false,
-  turnToGuess: false,
-  hasGuessed: false,
-  playerScoreLabel: player2Score,
-};
+//Getting player data from local storage - Only applicable to Rounds 2 & 3
+if (roundHeaderText.innerText === "Round One") {
 
+  playerOne = JSON.parse(localStorage.getItem("playerOne"));
+  playerTwo = JSON.parse(localStorage.getItem("playerTwo"));
+  roundCheck = 1;
+
+
+} else if (roundHeaderText.innerText === "Round Two") {
+  playerOne = JSON.parse(localStorage.getItem("playerOne"));
+  playerTwo = JSON.parse(localStorage.getItem("playerTwo"));
+  roundCheck = 2;
+
+} else {
+  console.log("This is round 3.")
+
+}
+
+console.log(playerOne)
+console.log(playerTwo)
+
+//reassigning playerScoreLabel to appropriate variables so they can be updated through currentPlayer/waitingPlayer within functions
+playerOne.playerScoreLabel = player1Score
+playerTwo.playerScoreLabel = player2Score
 
 //turn HTML collection into an array
 const gridBlockArray = Array.from(gridBlock);
 
 player1Score.innerText = playerOne.score;
+player2Score.innerText = playerTwo.score;
+playerTurnSpan.innerText = playerOne.name;
 
 // Declaring variables for global access
-let roundCheck = 1;
 let blockClassList;
 let pointValue;
 let itemIndex;
@@ -58,24 +69,6 @@ let numOfCardsUsed = [];
 
 console.log(currentPlayer);
 console.log(waitingPlayer);
-
-
-//Getting player data from local storage - Only applicable to Rounds 2 & 3
-if (roundHeaderText.innerText !== "Round One") {
-
-  playerOne = JSON.parse(localStorage.getItem("playerOne"));
-  playerTwo = JSON.parse(localStorage.getItem("playerTwo"));
-
-  if (roundHeaderText.innerText === "Round Two") {
-    roundCheck = 2;
-  } else {
-    roundCheck = 3;
-  }
-
-} else {
-  console.log("This data will be taken from player variables declared in index.js")
-}
-
 console.log(roundCheck);
 
 //?find a way to loop over objects, pick out a specific value, and push into the array below
@@ -237,9 +230,9 @@ function determineIndexToSlice(roundNum) {
 
 //!NOTE: These values need to be stored in a global variable to be accessed by other functions
 
-function determineRoundArray(roundNum, array) {
+function determineRoundArray(roundCheck, array) {
   //returns an array that will determine start and end of slice
-  let sliceArrayNums = determineIndexToSlice(roundNum);
+  let sliceArrayNums = determineIndexToSlice(roundCheck);
   let slice1 = sliceArrayNums[0];
   let slice2 = sliceArrayNums[1];
 
@@ -314,104 +307,50 @@ function scoreUpdate(operation) {
   let oldScore;
   let newScore;
 
-if(currentPlayer.turnToGuess === true){
-console.log(`score update ${currentPlayer}`)
+  if (currentPlayer.turnToGuess === true) {
+    console.log(`score update ${currentPlayer.name}`)
 
-switch (operation) {
-  case "add":
-    oldScore = currentPlayer.score;
-    console.log(oldScore);
-    newScore = oldScore + Number(pointValue);
-    currentPlayer.score = newScore;
-    console.log(newScore)
-    currentPlayer.playerScoreLabel.innerText = currentPlayer.score;
-    break;
-    case "subtract":
-    console.log("player 1 subtract case");
-    oldScore = currentPlayer.score;
-    newScore = oldScore - Number(pointValue);
-   currentPlayer.score = newScore;
-   currentPlayer.playerScoreLabel.innerText = currentPlayer.score;
-    break;
-}
-
-
-
-} else if(waitingPlayer.turnToGuess === true){
-
-  switch (operation) {
-    case "add":
-      oldScore = waitingPlayer.score;
-      console.log(oldScore);
-      newScore = oldScore + Number(pointValue);
-      waitingPlayer.score = newScore;
-      console.log(newScore)
-      waitingPlayer.playerScoreLabel.innerText = waitingPlayer.score;
-      break;
+    switch (operation) {
+      case "add":
+        oldScore = currentPlayer.score;
+        console.log(oldScore);
+        newScore = oldScore + Number(pointValue);
+        currentPlayer.score = newScore;
+        console.log(newScore)
+        currentPlayer.playerScoreLabel.innerText = currentPlayer.score;
+        break;
       case "subtract":
-      console.log("player 1 subtract case");
-      oldScore = waitingPlayer.score;
-      newScore = oldScore - Number(pointValue);
-     waitingPlayer.score = newScore;
-     waitingPlayer.playerScoreLabel.innerText = waitingPlayer.score;
-      break;
+        console.log("player 1 subtract case");
+        oldScore = currentPlayer.score;
+        newScore = oldScore - Number(pointValue);
+        currentPlayer.score = newScore;
+        currentPlayer.playerScoreLabel.innerText = currentPlayer.score;
+        break;
+    }
+
+  } else if (waitingPlayer.turnToGuess === true) {
+    console.log(`score update ${waitingPlayer.name}`)
+    switch (operation) {
+      case "add":
+        oldScore = waitingPlayer.score;
+        console.log(oldScore);
+        newScore = oldScore + Number(pointValue);
+        waitingPlayer.score = newScore;
+        console.log(newScore)
+        waitingPlayer.playerScoreLabel.innerText = waitingPlayer.score;
+        break;
+      case "subtract":
+        console.log("player 1 subtract case");
+        oldScore = waitingPlayer.score;
+        newScore = oldScore - Number(pointValue);
+        waitingPlayer.score = newScore;
+        waitingPlayer.playerScoreLabel.innerText = waitingPlayer.score;
+        break;
+    }
+
+
   }
 
-
-
-}
-
-
-
-  // if (player.name === "Player 1") {
-  //   console.log("ScoreUpdate - Player 1");
-  //   switch (operation) {
-  //     case "add":
-  //       oldScore = playerOne.score;
-  //       console.log(oldScore);
-  //       newScore = oldScore + Number(pointValue);
-  //       playerOne.score = newScore;
-  //       console.log(newScore)
-  //       player1Score.innerText = playerOne.score;
-
-
-  //       break;
-  //     case "subtract":
-  //       console.log("player 1 subtract case");
-  //       oldScore = playerOne.score;
-  //       newScore = oldScore - Number(pointValue);
-  //       playerOne.score = newScore;
-  //       player1Score.innerText = playerOne.score;
-
-
-  //       break;
-  //   }
-
-
-  // } else if(player.name === "Player 2") {
-  //   console.log("ScoreUpdate - Player 2");
-  //   switch (operation) {
-  //     case "add":
-  //       oldScore = playerTwo.score;
-  //       console.log(oldScore);
-  //       newScore = oldScore + Number(pointValue);
-  //       playerTwo.score = newScore;
-  //       console.log(newScore)
-  //       player2Score.innerText = playerTwo.score;
-
-
-  //       break;
-  //     case "subtract":
-  //       console.log("player 2 subtract case");
-  //       oldScore = playerTwo.score;
-  //       newScore = oldScore - Number(pointValue);
-  //       playerTwo.score = newScore;
-  //       player2Score.innerText = playerTwo.score;
-
-  //       break;
-  //   }
-  // }
-  // endOfRound();
 }
 
 //based on point values on the button, determines which question index to pull
@@ -449,23 +388,6 @@ function passQuestion() {
   alert(`Turn: ${waitingPlayer.name}`);
 }
 
-
-// if (currentPlayer === playerOne) {
-//   playerOne.hasGuessed = true;
-//   playerOne.turnToGuess = false;
-//   playerTurnSpan.textContent = playerTwo.name;
-//   console.log(playerTwo.name)
-//   alert("Turn: Player 2");
-//   // return true;
-// } else if (currentPlayer === playerTwo) {
-//  playerTwo.hasGuessed = true;
-//   PlayerTwo.turnToGuess = false;
-//   playerTurnSpan.innerText = playerOne.name;
-//   alert("Turn: Player 1");
-//   // return true;
-// } else {
-//   console.log("Current player is not player1 or player2")
-// }
 
 
 //!<<<<<<< GUESSING FUNCTIONALITY >>>>>>>>>>>>
@@ -526,7 +448,6 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
       waitingPlayer.turnToPick = true;
       currentPlayer.turnToPick = false;
 
-
       //adding to waiting player score
       scoreUpdate("add");
       //Switching the values of current player and waiting player variables
@@ -586,7 +507,7 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
         console.log(waitingPlayer);
         passQuestion();
 
-    
+
       } else {
         console.log("This is the else inside of waitingplayer turntoguess true")
       }
@@ -658,7 +579,8 @@ function endOfRound() {
 //Saving player score information in local storage to be used in next round
 
 function passingRoundData() {
-
+  //clearing out predvious variables from local storage
+  localStorage.clear()
   //turn player objects into strings to be stored in local storage
   let playerOne_serialized = JSON.stringify(playerOne)
   let playerTwo_serialized = JSON.stringify(playerTwo)
