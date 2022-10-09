@@ -16,53 +16,80 @@
 </head>
 
 <body>
-
+  <!-- HEADER -->
   <div class="header">
     <h1 class="swing-in-top-fwd" id="round-header-text">Final Round</h1>
   </div>
 
+  <!-- PLAYER TURN LABEL -->
   <div class="turn">
-    <h3 class="subheader">PLAYER TURN</h3>
+    <h3 class="subheader">PLAYER TURN: <span id="player-turn-span"></span> </h3>
   </div>
 
   <form>
     <div class="form2 form-wrapper">
-
       <div class="col">
         <div class="final-question">
-
           <p class="final-cat-text" id="final-category">
             FINAL CATEGORY
           </p>
-
           <p class="final-q-text" id="final-question">
-            FINAL QUESTION: Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Ipsa, tenetur?
           </p>
-
-
-
         </div>
-
+        <!-- PLACING A BET INPUT -->
         <div class="final-form">
           <label for="user-input"></label>
-          <input class="form-item" type="text" placeholder="Point bet amount..." name="amount" class="text-input">
-          <input class="form-item" type="text" placeholder="Final answer..." name="answer" class="text-input">
+          <input class="form-item" id="bet-amount" type="text" placeholder="Point bet amount..." name="amount"
+            class="text-input">
           <div class="input-button-container">
           </div>
         </div>
         <div class="bet-btn-wrapper">
-          <input type="button" class="form-item input-btn btn-bet" value="BET">
+          <input type="button" class="form-item input-btn btn-bet" id="bet-btn" value="BET">
         </div>
-
-
       </div>
     </div>
-
   </form>
 
+
+  <!----- Popup displays on button click - FINAL QUESTION TEXT AND GUESS INPUT ----->
+  <div class="popup" id="popup-1">
+    <div class="overlay" id="overlay">
+      <div class="content">
+        <h1 id="card-category-name">Category Name</h1>
+        <p id="card-question-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, fugit facere
+          eligendi laudantium culpa a amet repudiandae asperiores mollitia ratione illum eum perspiciatis, optio
+          architecto quis odio sed libero rerum.</p>
+
+        <!-- user input section within the popup -->
+        <div class="user-input">
+          <form class="form1">
+            <label for="user-input"></label>
+            <input type="text" placeholder="Guess here" name="guess" class="text-input" id="final-answer"><br><br>
+            <div class="input-button-container">
+              <input type="button" id="guess-btn" class="input-btn" value="GUESS">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL SCORE TOTALS AND WINNER POPUP -->
+  <div class="popup" id="popup-2">
+    <div class="overlay" id="overlay">
+      <div class="content">
+        <h1 id="final-card-name">Game Results</h1>
+        <p class="player-score-text-final">Player 1: <span class="yellow-text" id="player1-score-span-final"></span></p>
+        <p class="player-score-text-final">Player 2: <span class="yellow-text" id="player2-score-span-final"></span></p>
+        <p class="player-score-text-final ">WINNER: <span class="yellow-text" id="winner-final"></span></p>
+        <input type="button" id="restart-btn" class="input-btn" value="RESTART">
+      </div>
+    </div>
+  </div>
+
   <div class="audio-wrapper">
-    <audio controls autoplay>
+    <audio controls>
       <source src="assets/Jeopardy-theme-song.mp3" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
@@ -71,7 +98,7 @@
   <div class="footer">
     <p><em>BCA SDB-August-2022</em></p>
   </div>
-  
+
   <script type="module" src="./scripts/final.js"></script>
 </body>
 

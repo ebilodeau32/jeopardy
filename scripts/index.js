@@ -1,8 +1,7 @@
-//TODO: Player Objects are sent through local storage
+//TODO: 1. Refactoring code to work with an API, 2. Refactor determineIndex function to be more universal between rounds 3.  
 
-//? WHY WON'T CURRENT AND WAITING PLAYER VARIABLES UPDATE?!?!?!!?
-//I might need to create separate files for each round to separate player objects from the game functionality
 
+//importing question data
 import placeholderQuestions from "./placeholder-questions.js";
 
 //*------------------GLOBAL VARIABLES-----------------
@@ -22,6 +21,7 @@ let player1Score = document.getElementById("player1-score");
 let player2Score = document.getElementById("player2-score");
 let roundHeaderText = document.getElementById("round-header-text");
 
+//Creating variables to be reassgined from local storage
 let playerOne;
 let playerTwo;
 let roundCheck;
@@ -44,9 +44,6 @@ if (roundHeaderText.innerText === "Round One") {
 
 }
 
-console.log(playerOne)
-console.log(playerTwo)
-
 //reassigning playerScoreLabel to appropriate variables so they can be updated through currentPlayer/waitingPlayer within functions
 playerOne.playerScoreLabel = player1Score
 playerTwo.playerScoreLabel = player2Score
@@ -67,12 +64,6 @@ let currentPlayer = playerOne;
 let waitingPlayer = playerTwo;
 let numOfCardsUsed = [];
 
-console.log(currentPlayer);
-console.log(waitingPlayer);
-console.log(roundCheck);
-
-//?find a way to loop over objects, pick out a specific value, and push into the array below
-
 //For setting the titles of each category
 let categoryArray = [
   "Nature",
@@ -82,9 +73,6 @@ let categoryArray = [
   "History",
   "General",
 ];
-
-//TODO: Remove debugging console log later
-// console.log(placeholderQuestions);
 
 //*<<<<<<<<< Filtereing out questions by category >>>>>>>>>>>>>>>>
 
@@ -145,7 +133,6 @@ playerTurnSpan.innerText = currentPlayer.name;
 //Assigning categories
 assigningCategoryTitles();
 
-
 //*-------------------EVENT LISTENERS-----------------
 //Disable all category buttons so they can't be clicked
 gridCategoryBtn.forEach((block) => {
@@ -155,15 +142,11 @@ gridCategoryBtn.forEach((block) => {
 //Add event listeners to every grid-block element
 gridBlockArray.forEach((block) => {
   block.addEventListener("click", (event) => {
-    console.log("trigger popup with question text.");
-    console.log(event.target);
     //increment card counter by adding array item each time a card is clicked
     numOfCardsUsed.push("x");
     blockClassList = event.target.classList;
     pointValue = event.target.innerText;
     itemIndex = determineIndex(pointValue);
-    console.log(blockClassList);
-    // console.log(pointValue);
     selectAQuestion(itemIndex, block);
   });
 });
@@ -178,11 +161,13 @@ document.addEventListener("keydown", function (event) {
 //Pass question event listener
 passBtn.addEventListener("click", (event) => {
   if (stopPass == false) {
-    stopPass = passQuestion(waitingPlayer);
+    stopPass = passQuestion();
+    stopPass = true;
   } else {
     stopPass = false;
     passBtn.disabled = true;
     alert("You can't pass this question again. Please enter your answer.");
+
   }
 });
 
@@ -213,7 +198,6 @@ function assigningCategoryTitles() {
 //Determines which index numbers will be used for slicing based on the round number
 //Round 1: index 0-5
 //Rount2: index 5-10
-
 function determineIndexToSlice(roundNum) {
   if (roundNum === 1) {
     let sliceArrayNums = [0, 5];
@@ -227,8 +211,6 @@ function determineIndexToSlice(roundNum) {
 }
 
 //Utilizes the slice values of determineIndexToSlice function and slices the provided array.
-
-//!NOTE: These values need to be stored in a global variable to be accessed by other functions
 
 function determineRoundArray(roundCheck, array) {
   //returns an array that will determine start and end of slice
@@ -252,7 +234,7 @@ function selectAQuestion(index, block) {
 
   //based on button clicked (certain class) the correct type of text is filled onto the card
   assignQuestionsToCards(index, block);
-  //TODO: round 1 wont change when moving to round 2. Need to include that in round change functionality.
+
 }
 
 //Determines which question gets assigned to which block
@@ -300,8 +282,6 @@ function questionPickerFunction(questionArray, index) {
   cardQuestionText.innerText = questionArray[index].question.toUpperCase();
 }
 
-
-//TODO: pass in current and waiting player?? Currently not used
 function scoreUpdate(operation) {
   console.log("scoreUpdate function triggered");
   let oldScore;
@@ -347,35 +327,54 @@ function scoreUpdate(operation) {
         waitingPlayer.playerScoreLabel.innerText = waitingPlayer.score;
         break;
     }
-
-
   }
-
 }
 
 //based on point values on the button, determines which question index to pull
-//TODO: Need to updated based on round 2 values
-//?make point values into a variable and have those variables change based on round
+//? Make point values into a variable and have those variables change based on round
 function determineIndex(pointValue) {
   let index;
-  switch (true) {
-    case pointValue == 100:
-      return 0;
-      break;
-    case pointValue == 200:
-      return 1;
-      break;
-    case pointValue == 300:
-      return 2;
-      break;
-    case pointValue == 400:
-      return 3;
-      break;
-    case pointValue == 500:
-      return 4;
-      break;
-    default:
-      console.log("No index calc");
+  if (roundCheck == 1) {
+    switch (true) {
+      case pointValue == 100:
+        return 0;
+        break;
+      case pointValue == 200:
+        return 1;
+        break;
+      case pointValue == 300:
+        return 2;
+        break;
+      case pointValue == 400:
+        return 3;
+        break;
+      case pointValue == 500:
+        return 4;
+        break;
+      default:
+        console.log("No index calc");
+    }
+  }
+  else if (roundCheck == 2) {
+    switch (true) {
+      case pointValue == 200:
+        return 0;
+        break;
+      case pointValue == 400:
+        return 1;
+        break;
+      case pointValue == 600:
+        return 2;
+        break;
+      case pointValue == 800:
+        return 3;
+        break;
+      case pointValue == 1000:
+        return 4;
+        break;
+      default:
+        console.log("No index calc");
+    }
   }
 }
 
@@ -387,8 +386,6 @@ function passQuestion() {
   currentPlayer.turnToGuess = false;
   alert(`Turn: ${waitingPlayer.name}`);
 }
-
-
 
 //!<<<<<<< GUESSING FUNCTIONALITY >>>>>>>>>>>>
 
@@ -421,15 +418,10 @@ function checkAnswer(blockClassList, index) {
   }
 }
 
-
 //Guess function that checks if an answer is correct or not and updates scores accordingly
-
 function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
   let guess = guessTextInput.value;
   let answer = questionArray[index].answer;
-
-  console.log(currentPlayer)
-  console.log(waitingPlayer)
 
   //*>>>>>If input box is blank when guess button is clicked<<<<<
 
@@ -459,7 +451,7 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
 
       //*---CURRERNT PLAYER ANSWERS CORRECTLY--- 
     } else if (currentPlayer.turnToGuess === true) {
-      console.log(currentPlayer) //!WHY IS THIS RESET HERE?
+      console.log(currentPlayer)
       console.log("CORRECT - CURRENT PLAYER")
       alert(`Correct! The answer was: ${answer}.`);
       //adding to current player score
@@ -469,11 +461,9 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
       playerObjectReset(currentPlayer, waitingPlayer)
       //close popup window
       popUpBox.classList.toggle("active");
-
     }
     //*>>>>>if guess is INCORRECT<<<<<
   } else if (guess !== answer) {
-
 
     //*---WAITING PLAYER GUESSES INCORRECTLY---
     if (waitingPlayer.hasGuessed === true && currentPlayer.hasGuessed === true) {
@@ -488,7 +478,6 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
       console.log(currentPlayer)
       //close popup window
       popUpBox.classList.toggle("active");
-
     }
 
     //*---CURRERNT PLAYER GUESSES INCORRECTLY--- 
@@ -505,18 +494,15 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
         console.log("#10waiting player turn to guess = TRUE")
         waitingPlayer.turnToGuess = false;
         console.log(waitingPlayer);
+        //Disable pass button after current player answers incorrectly
+        passBtn.disabled = true;
         passQuestion();
-
 
       } else {
         console.log("This is the else inside of waitingplayer turntoguess true")
       }
-
-
-
     }
   }
-  console.log("This is the end of the loop")
   endOfRound()
   //disable pass button - you cannot pass a wrong answer question
   passBtn.disabled = true;
@@ -526,21 +512,14 @@ function verifyGuess(questionArray, index, currentPlayer, waitingPlayer) {
 function playerSwitch() {
   let placeholder1 = currentPlayer;
   let placeholder2 = waitingPlayer;
-
   currentPlayer = placeholder2;
   waitingPlayer = placeholder1;
-
   playerTurnSpan.innerText = currentPlayer.name;
-
-  console.log(`This is the NEW waiting player ${waitingPlayer.name}`)
-  console.log(`This is the NEW current player ${currentPlayer.name}`)
 }
 
-
+//resetting both player objects to beginning of turn
 function playerObjectReset() {
   console.log("current turn switch")
-
-  //resetting both player objects to beginning of turn
 
   // currentPlayer.turnToPick = true;
   currentPlayer.turnToGuess = true;
@@ -549,35 +528,36 @@ function playerObjectReset() {
   // waitingPlayer.turnToPick = false;
   waitingPlayer.turnToGuess = false;
   waitingPlayer.hasGuessed = false;
-
   playerTurnSpan.innerText = currentPlayer.name;
-
 
 }
 
-//? Need to create a check for the end of the round
-
+//Checks to see if end of round thresholds have been met
 function endOfRound() {
-  console.log(playerOne.score)
-  console.log(playerTwo.score)
-  console.log(numOfCardsUsed.length)
-  if (playerOne.score > 14000 || playerTwo.score > 14000 || numOfCardsUsed.length > 28) {
+  if (roundCheck === 1) {
+    if (playerOne.score > 14000 || playerTwo.score > 14000 || numOfCardsUsed.length > 28) {
 
-    nextRoundBtn.disabled = false;
-    alert("Move on to Round 2");
+      nextRoundBtn.disabled = false;
+      alert("Move on to Round 2");
 
-  } else {
-    console.log("This round will continue")
-    console.log(playerOne)
-    console.log(playerTwo)
-    console.log(currentPlayer)
-    console.log(waitingPlayer)
+    } else {
+      console.log("This round will continue")
+    }
+
+  } else if (roundCheck === 2) {
+    if (playerOne.score > 30000 || playerTwo.score > 30000 || numOfCardsUsed.length > 28) {
+
+      nextRoundBtn.disabled = false;
+      alert("Move on to Final Round");
+
+    } else {
+      console.log("This round will continue")
+
+    }
   }
-
 }
 
 //Saving player score information in local storage to be used in next round
-
 function passingRoundData() {
   //clearing out predvious variables from local storage
   localStorage.clear()
@@ -586,7 +566,6 @@ function passingRoundData() {
   let playerTwo_serialized = JSON.stringify(playerTwo)
   localStorage.setItem("playerOne", playerOne_serialized);
   localStorage.setItem("playerTwo", playerTwo_serialized);
-  console.log(playerOne_serialized);
 }
 
 
