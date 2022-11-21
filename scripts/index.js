@@ -1,4 +1,4 @@
-//TODO: 1. Refactoring code to work with an API, 2. Refactor determineIndex function to be more universal between rounds 3.  
+//TODO: 1. Refactoring code to work with an API, 2. Refactor determineIndex function to be more universal between rounds
 
 
 //importing question data
